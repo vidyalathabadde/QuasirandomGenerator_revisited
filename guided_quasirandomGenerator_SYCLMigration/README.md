@@ -36,8 +36,8 @@ This sample is migrated from NVIDIA CUDA sample. See the [quasirandomGenerator](
 | Optimized for              | Description
 |:---                        |:---
 | OS                         | Ubuntu* 20.04
-| Hardware                   | Intel® Gen9, Gen11 and Intel® Xeon(R) Gold 6128 CPU
-| Software                   | SYCLomatic version 2023.0, Intel oneAPI Base Toolkit version 2023.0
+| Hardware                   | Intel® Gen9 <br> Gen11 <br> Xeon CPU <br> Data Center GPU Max
+| Software                   | SYCLomatic (Tag - 20230720) <br> Intel oneAPI Base Toolkit version 2023.2.1
 
 For more information on how to install SYCLomatic Tool, visit [Migrate from CUDA* to C++ with SYCL*](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/migrate-from-cuda-to-cpp-with-sycl.html#gs.v3584e).
 

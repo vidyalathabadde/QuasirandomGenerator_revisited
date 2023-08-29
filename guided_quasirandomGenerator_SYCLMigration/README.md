@@ -71,7 +71,7 @@ For this sample, the SYCLomatic Tool automatically migrates 100% of the CUDA cod
 4. The above step creates a JSON file named compile_commands.json with all the compiler invocations and stores the names of the input files and the compiler options.
 5. Pass the JSON file as input to the Intel® SYCLomatic Compatibility Tool. The result is written to a folder named dpct_output. The --in-root specifies path to the root of the source tree to be migrated.
    ```
-   c2s -p compile_commands.json --in-root ../../.. --use-custom-helper=api
+   c2s -p compile_commands.json --in-root ../../.. --gen-helper-function
    ```
 ## Optimizations
 

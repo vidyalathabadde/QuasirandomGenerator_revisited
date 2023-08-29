@@ -2,10 +2,11 @@
  
 The `QuasirandomGenerator` sample implements Niederreiter Quasirandom Sequence Generator and Inverse Cumulative Normal Distribution functions for the generation of Standard Normal Distributions.
 
-| Property                  | Description
+| Area                  | Description
 |:---                       |:---
 | What you will learn       | Migrating and optimizing QuasirandomGenerator from CUDA to SYCL
 | Time to complete          | 15 minutes
+| Category                  | Code Optimization
 
 ## Purpose
 

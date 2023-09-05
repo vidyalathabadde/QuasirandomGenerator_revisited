@@ -37,10 +37,11 @@ This sample is migrated from NVIDIA CUDA sample. See the [quasirandomGenerator](
 | Optimized for              | Description
 |:---                        |:---
 | OS                         | Ubuntu* 20.04
-| Hardware                   | Intel® Gen9 <br> Gen11 <br> Xeon CPU <br> Data Center GPU Max
-| Software                   | SYCLomatic (Tag - 20230720) <br> Intel oneAPI Base Toolkit version 2023.2.1
+| Hardware                   | Intel® Gen9 <br> Gen11 <br> Xeon CPU <br> Data Center GPU Max <br> Tesla P100 <br> NVIDIA A100 <br> NVIDIA H100
+| Software                   | SYCLomatic (Tag - 20230720) <br> Intel oneAPI Base Toolkit version 2023.2.1 <br> oneAPI for NVIDIA GPUs" plugin from Codeplay
 
-For more information on how to install SYCLomatic Tool, visit [Migrate from CUDA* to C++ with SYCL*](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/migrate-from-cuda-to-cpp-with-sycl.html#gs.v3584e).
+For more information on how to install SYCLomatic Tool, visit [Migrate from CUDA* to C++ with SYCL*](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/migrate-from-cuda-to-cpp-with-sycl.html#gs.v3584e). <br> 
+[Install oneAPI for NVIDIA GPUs](https://developer.codeplay.com/products/oneapi/nvidia/)
 
 ## Key Implementation Details
 
@@ -101,13 +102,14 @@ To summarise, in-order queues guarantee the order of execution of commands, whil
    ```
    $ mkdir build
    $ cd build
-   $ cmake ..
+   $ cmake .. or ( cmake -D INTEL_MAX_GPU=1 .. ) or ( cmake -D NVIDIA_GPU=1 .. )
    $ make
    ```
+**Note:** By default, no flags are enabled during the build which supports Intel® UHD Graphics, Intel® Gen9, Gen11, Xeon CPU. Enable INTEL_MAX_GPU flag during build which supports Intel® Data Center GPU Max 1550 or 1100 to get optimized performance.  Enable NVIDIA_GPU flag during the build which supports NVIDIA GPUs.([oneAPI for NVIDIA GPUs](https://developer.codeplay.com/products/oneapi/nvidia/) plugin from Codeplay is required to build for NVIDIA GPUs)
+   
+By default, this command sequence will build the `01_dpct_output`, `02_sycl_migrated_optimized` version of the program.
 
-   By default, this command sequence will build the `01_dpct_output`, `02_sycl_migrated_optimized` version of the program.
-
-3. Run the program.
+4. Run the program.
    
    Run `01_dpct_output` on GPU.
    ```
@@ -119,7 +121,7 @@ To summarise, in-order queues guarantee the order of execution of commands, whil
    make run
    unset ONEAPI_DEVICE_SELECTOR 
    ```
- 4. Run the program.
+ 5. Run the program.
    
    Run `02_sycl_migrated_optimized` on GPU.
    ```

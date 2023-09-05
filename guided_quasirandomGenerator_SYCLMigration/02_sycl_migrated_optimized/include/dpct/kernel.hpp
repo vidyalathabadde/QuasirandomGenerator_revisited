@@ -26,7 +26,7 @@
 #endif
 
 #include <random>
-
+#include <fstream>
 #include <image.hpp>
 
 namespace dpct {

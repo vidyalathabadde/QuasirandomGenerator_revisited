@@ -143,34 +143,6 @@ make VERBOSE=1
 ```
 If you receive an error message, troubleshoot the problem using the **Diagnostics Utility for Intel® oneAPI Toolkits**. The diagnostic utility provides configuration and system checks to help find missing dependencies, permissions errors, and other issues. See the [Diagnostics Utility for Intel® oneAPI Toolkits User Guide](https://www.intel.com/content/www/us/en/docs/oneapi/user-guide-diagnostic-utility/2024-0/overview.html) for more information on using the utility.
 
-
-### Example Output
-
-The following example is for `02_sycl_migrated_optimized` for GPU on **Intel(R) UHD Graphics [0x9a60]**.
-```
-Allocating GPU memory...
-Allocating CPU memory...
-Initializing QRNG tables...
-
-Testing QRNG...
-
-quasirandomGenerator, Throughput = 0.8495 GNumbers/s, Time = 0.00370 s, Size = 3145728 Numbers, NumDevsUsed = 1, Workgroup = 384
-
-Reading GPU results...
-Comparing to the CPU results...
-
-L1 norm: 7.275964E-12
-
-Testing inverseCNDgpu()...
-
-quasirandomGenerator-inverse, Throughput = 11.0902 GNumbers/s, Time = 0.00028 s, Size = 3145728 Numbers, NumDevsUsed = 1, Workgroup = 128
-Reading GPU results...
-
-Comparing to the CPU results...
-L1 norm: 8.461076E-08
-
-Shutting down...
-```
 ## License
 Code samples are licensed under the MIT license. See
 [License.txt](https://github.com/oneapi-src/oneAPI-samples/blob/master/License.txt) for details.

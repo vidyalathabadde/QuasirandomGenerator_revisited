@@ -36,10 +36,6 @@
 #include "quasirandomGenerator_common.h"
 using namespace sycl;
 // Fast integer multiplication
-/*
-DPCT1064:15: Migrated __umul24 call is used in a macro/template definition and
-may not be valid for all macro/template uses. Adjust the code.
-*/
 #define MUL(a, b) sycl::mul24((unsigned int)a, (unsigned int)b)
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -76,21 +72,16 @@ static void quasirandomGeneratorKernel(float *d_Output,
 // Table initialization routine
 extern "C" void initTableGPU(
     unsigned int tableCPU[QRNG_DIMENSIONS][QRNG_RESOLUTION],sycl::queue q_ct1) {
-  checkCudaErrors(DPCT_CHECK_ERROR(
+  DPCT_CHECK_ERROR(
           q_ct1.memcpy(c_Table.get_ptr(), tableCPU,
                   QRNG_DIMENSIONS * QRNG_RESOLUTION * sizeof(unsigned int))
-          .wait()));
+          .wait());
 }
 
 // Host-side interface
 extern "C" void quasirandomGeneratorGPU(float *d_Output, unsigned int seed,
                                         unsigned int N, sycl::queue q_ct1) {
   sycl::range<3> threads(1, QRNG_DIMENSIONS, 128);
-  /*
-  DPCT1049:0: The work-group size passed to the SYCL kernel may exceed the
-  limit. To get the device limit, query info::device::max_work_group_size.
-  Adjust the work-group size if needed.
-  */
   q_ct1.submit([&](sycl::handler &cgh) {
     c_Table.init();
 
@@ -103,7 +94,6 @@ extern "C" void quasirandomGeneratorGPU(float *d_Output, unsigned int seed,
                                      c_Table_acc_ct1);
         });
   });
-  getLastCudaError("quasirandomGeneratorKernel() execution failed.\n");
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -209,7 +199,6 @@ extern "C" void inverseCNDgpu(float *d_Output, unsigned int *d_Input,
       [=](sycl::nd_item<3> item_ct1) {
         inverseCNDKernel(d_Output, d_Input, N, item_ct1);
       });
-  getLastCudaError("inverseCNDKernel() execution failed.\n");
 }
 
 #endif

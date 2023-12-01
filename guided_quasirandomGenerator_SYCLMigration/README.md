@@ -25,7 +25,7 @@ This sample contains two versions in the following folders:
 
 | Optimized for              | Description
 |:---                        |:---
-| OS                         | Ubuntu* 20.04
+| OS                         | Ubuntu* 22.04
 | Hardware                   | Intel® Gen9 <br> Gen11 <br> Intel® Xeon(R) Gold 6128 CPU <br> Intel® Data Center GPU Max <br> NVIDIA Tesla P100 <br> NVIDIA A100 <br> NVIDIA H100
 | Software                   | SYCLomatic (Tag - 20230720) <br> Intel oneAPI Base Toolkit version 2024.0.0 <br> oneAPI for NVIDIA GPUs" plugin from Codeplay
 

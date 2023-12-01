@@ -126,12 +126,12 @@ By default, this command sequence will build the `02_sycl_migrated_optimized` ve
    
    Run `02_sycl_migrated_optimized` on GPU.
    ```
-   make run_smo
+   make run
    ```  
    Run `02_sycl_migrated_optimized` on CPU.
    ```
    export ONEAPI_DEVICE_SELECTOR=opencl:cpu
-   make run_smo
+   make run
    unset ONEAPI_DEVICE_SELECTOR 
    ```
    

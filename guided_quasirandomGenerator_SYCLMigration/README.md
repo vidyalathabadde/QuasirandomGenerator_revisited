@@ -123,7 +123,7 @@ By default, this command sequence will build the `01_dpct_output`, `02_sycl_migr
    ```  
    Run `01_dpct_output` on CPU.
    ```
-   export ONEAPI_DEVICE_SELECTOR=cpu
+   export ONEAPI_DEVICE_SELECTOR=opencl:cpu
    make run
    unset ONEAPI_DEVICE_SELECTOR 
    ```
@@ -135,7 +135,7 @@ By default, this command sequence will build the `01_dpct_output`, `02_sycl_migr
    ```  
    Run `02_sycl_migrated_optimized` on CPU.
    ```
-   export ONEAPI_DEVICE_SELECTOR=cpu
+   export ONEAPI_DEVICE_SELECTOR=opencl:cpu
    make run_smo
    unset ONEAPI_DEVICE_SELECTOR 
    ```

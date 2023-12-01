@@ -27,7 +27,7 @@ This sample contains two versions in the following folders:
 |:---                        |:---
 | OS                         | Ubuntu* 22.04
 | Hardware                   | Intel® Gen9 <br> Intel® Gen11 <br> Intel® Xeon(R) Gold 6128 CPU <br> Intel® Data Center GPU Max <br> NVIDIA Tesla P100 <br> NVIDIA A100 <br> NVIDIA H100
-| Software                   | SYCLomatic (Tag - 20230720) <br> Intel oneAPI Base Toolkit version 2024.0.0 <br> oneAPI for NVIDIA GPUs" plugin from Codeplay
+| Software                   | SYCLomatic (Tag - 20230720) <br> Intel oneAPI Base Toolkit version 2024.0.0 <br> oneAPI for NVIDIA GPUs" plugin from Codeplay (version 2024.0.0)
 
 For more information on how to install Syclomatic Tool & DPC++ CUDA® plugin, visit [Migrate from CUDA* to C++ with SYCL*](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/migrate-from-cuda-to-cpp-with-sycl.html#gs.v354cy) <br> How to run SYCL™ applications on NVIDIA® GPUs, refer to oneAPI for NVIDIA GPUs plugin from Codeplay [Install oneAPI for NVIDIA GPUs](https://developer.codeplay.com/products/oneapi/nvidia/)
 

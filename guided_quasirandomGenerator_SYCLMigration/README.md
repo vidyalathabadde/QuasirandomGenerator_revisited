@@ -18,8 +18,8 @@ This sample contains two versions in the following folders:
 
 | Folder Name                   | Description
 |:---                           |:---
-| `01_dpct_output`              | Contains output of SYCLomatic Tool used to migrate SYCL-compliant code from CUDA code. This SYCL code has some unmigrated code that has to be manually fixed to get full functionality. (The code does not functionally work as supplied.)
-| `02_sycl_migrated_optimized`            | Contains the optimized sycl code.
+| `01_dpct_output`              | Contains the output of SYCLomatic Tool used to migrate SYCL-compliant code from CUDA code. This SYCL code has some unmigrated code that has to be manually fixed to get full functionality. (The code does not functionally work as supplied.)
+| `02_sycl_migrated_optimized`            | Contains the optimized the sycl code.
 
 ## Prerequisites
 
@@ -30,10 +30,6 @@ This sample contains two versions in the following folders:
 | Software                   | SYCLomatic (Tag - 20230720) <br> Intel oneAPI Base Toolkit version 2024.0.0 <br> oneAPI for NVIDIA GPUs" plugin from Codeplay
 
 For more information on how to install Syclomatic Tool & DPC++ CUDA® plugin, visit [Migrate from CUDA* to C++ with SYCL*](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/migrate-from-cuda-to-cpp-with-sycl.html#gs.v354cy) <br> How to run SYCL™ applications on NVIDIA® GPUs, refer to oneAPI for NVIDIA GPUs plugin from Codeplay [Install oneAPI for NVIDIA GPUs](https://developer.codeplay.com/products/oneapi/nvidia/)
-
-### Workflow For CUDA to SYCL migration
-
-Refer [Workflow](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/cuda-sycl-migration-workflow.html#gs.s2njvh) for details.
 
 ## Key Implementation Details
 
@@ -51,7 +47,7 @@ This sample is migrated from NVIDIA CUDA sample. See the [quasirandomGenerator](
 
 ## Set Environment Variables
 
-When working with the command-line interface (CLI), you should configure the oneAPI toolkits using environment variables. Set up your CLI environment by sourcing the `setvars` script every time you open a new terminal window. This practice ensures that your compiler, libraries, and tools are ready for development.
+When working with the command-line interface (CLI), you should configure the oneAPI toolkits using environment variables. Set up your CLI environment by sourcing the `setvars` script every time you open a new terminal window. This practice ensures that the compiler, libraries, and tools are ready for development.
 
 ## Migrate the `threadFence Reduction` Sample
 

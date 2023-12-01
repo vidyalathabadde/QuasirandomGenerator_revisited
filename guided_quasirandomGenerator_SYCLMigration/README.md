@@ -66,7 +66,7 @@ For this sample, the SYCLomatic Tool automatically migrates 100% of the CUDA cod
    ```
    c2s -p compile_commands.json --in-root ../../.. --gen-helper-function
    ```
-## Optimizations
+### Optimizations
 
 SYCL has two kinds of queues that a programmer can create and use to submit kernels for execution:
 

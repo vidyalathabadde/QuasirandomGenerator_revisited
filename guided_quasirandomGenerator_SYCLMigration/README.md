@@ -49,7 +49,7 @@ This sample is migrated from NVIDIA CUDA sample. See the [quasirandomGenerator](
 
 When working with the command-line interface (CLI), you should configure the oneAPI toolkits using environment variables. Set up your CLI environment by sourcing the `setvars` script every time you open a new terminal window. This practice ensures that the compiler, libraries, and tools are ready for development.
 
-## Migrate the `threadFence Reduction` Sample
+## Migrate the `quasirandomGenerator` Sample
 
 ### Migrate the Code using SYCLomatic 
 
@@ -108,7 +108,10 @@ To summarise, in-order queues guarantee the order of execution of commands, whil
    $ cmake .. or ( cmake -D INTEL_MAX_GPU=1 .. ) or ( cmake -D NVIDIA_GPU=1 .. )
    $ make
    ```
-**Note:** By default, no flags are enabled during the build which supports Intel® UHD Graphics, Intel® Gen9, Gen11, Xeon CPU. Enable INTEL_MAX_GPU flag during build which supports Intel® Data Center GPU Max 1550 or 1100 to get optimized performance.  Enable NVIDIA_GPU flag during the build which supports NVIDIA GPUs.([oneAPI for NVIDIA GPUs](https://developer.codeplay.com/products/oneapi/nvidia/) plugin from Codeplay is required to build for NVIDIA GPUs)
+>**Note:** 
+> - By default, no flags are enabled during the build which supports Intel® UHD Graphics, Intel® Gen9, Gen11, Xeon CPU.
+> - Enable INTEL_MAX_GPU flag during build which supports Intel® Data Center GPU Max 1550 or 1100 to get optimized performance.
+> - Enable NVIDIA_GPU flag during build which supports NVIDIA GPUs.([oneAPI for NVIDIA GPUs plugin from Codeplay](https://developer.codeplay.com/products/oneapi/nvidia/)  is required to build for NVIDIA GPUs)
    
 By default, this command sequence will build the `01_dpct_output`, `02_sycl_migrated_optimized` version of the program.
 

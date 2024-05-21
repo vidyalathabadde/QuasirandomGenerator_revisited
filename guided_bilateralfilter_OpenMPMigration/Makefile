@@ -27,6 +27,10 @@ $(TARGET): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
+# Rule to run the target executable
+run: $(TARGET)
+        ./$(TARGET)
+
 # Clean rule to remove the generated files
 clean:
 	rm -f $(OBJS) $(TARGET)

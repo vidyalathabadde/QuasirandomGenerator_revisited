@@ -1,99 +1,78 @@
-﻿# `QuasirandomGenerator` Sample
+﻿# `BilateralFilter` Sample
  
-The `QuasirandomGenerator` sample implements Niederreiter Quasirandom Sequence Generator and Inverse Cumulative Normal Distribution functions for the generation of Standard Normal Distributions. The original CUDA* source code is migrated to SYCL for portability across GPUs from multiple vendors.
+ This sample uses OpenMP directives to perform a simple bilateral filter on an image and measures performance. The original OpenACC source code is migrated to OpenMP to Offload on Intel® Platforms.
 
 | Area                  | Description
 |:---                       |:---
-| What you will learn       | Migrating and optimizing QuasirandomGenerator from CUDA to SYCL
+| What you will learn       | Migrating and optimizing bilateralFilter from OpenACC to OpenMP
 | Time to complete          | 15 minutes
-| Category                  | Code Optimization
+| Category                  | Concepts and Functionality
 
 ## Purpose
 
-The sample is based on the Niederreiter sequence, which is a type of low-discrepancy sequence that has better properties than pseudorandom sequences for certain applications, such as Monte Carlo integration.
+Bilateral filter is an edge-preserving nonlinear smoothing filter. There are three parameters distribute to the filter: gaussian delta, euclidean delta and iterations.
+When the euclidean delta increases, most of the fine texture will be filtered away, yet all contours are as crisp as in the original image. If the euclidean delta approximates to ∞, the filter becomes a normal gaussian filter. Fine texture will blur more with larger gaussian delta. Multiple iterations have the effect of flattening the colors in an image considerably, but without blurring edges, which produces a cartoon effect.
 
-> **Note**: We use Intel® open-sources SYCLomatic tool which assists developers in porting CUDA code automatically to SYCL code. To finish the process, developers complete the rest of the coding manually and then tune to the desired level of performance for the target architecture. User's can also use SYCLomatic Tool which comes along with the Intel® oneAPI Base Toolkit.
+> **Note**: We use intel-application-migration-tool-for-openacc-to-openmp which assists developers in porting OpenACC code automatically to OpenMP code. 
 
 This sample contains two versions in the following folders:
 
 | Folder Name                   | Description
 |:---                           |:---
-| `01_dpct_output`              | Contains the output of SYCLomatic Tool used to migrate SYCL-compliant code from CUDA code. This SYCL code has some unmigrated code that has to be manually fixed to get full functionality. (The code does not functionally work as supplied.)
-| `02_sycl_migrated_optimized`            | Contains the optimized the sycl code.
+| `src`              | Contains the original OpenACC source code 
+| `OpenMP_migrated`            | Contains the OpenMP migrated code.
 
 ## Prerequisites
 
 | Optimized for              | Description
 |:---                        |:---
 | OS                         | Ubuntu* 22.04
-| Hardware                   | Intel® Gen9 <br> Intel® Gen11 <br> Intel® Xeon(R) Gold 6128 CPU <br> Intel® Data Center GPU Max <br> NVIDIA Tesla P100 <br> NVIDIA A100 <br> NVIDIA H100
-| Software                   | SYCLomatic (Tag - 20230720) <br> Intel oneAPI Base Toolkit version 2024.0.0 <br> oneAPI for NVIDIA GPUs" plugin from Codeplay (version 2024.0.0)
+| Hardware                   | Intel® Data Center GPU Max
+| Software                   | intel-application-migration-tool-for-openacc-to-openmp
 
-For more information on how to install Syclomatic Tool & DPC++ CUDA® plugin, visit [Migrate from CUDA* to C++ with SYCL*](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/migrate-from-cuda-to-cpp-with-sycl.html#gs.v354cy) <br> How to run SYCL™ applications on NVIDIA® GPUs, refer to oneAPI for NVIDIA GPUs plugin from Codeplay [Install oneAPI for NVIDIA GPUs](https://developer.codeplay.com/products/oneapi/nvidia/)
+For more information on how to install the above Tool, visit [intel-application-migration-tool-for-openacc-to-openmp](https://github.com/intel/intel-application-migration-tool-for-openacc-to-openmp)
 
 ## Key Implementation Details
 
-This sample demonstrates the migration of the following prominent CUDA feature: 
-- Constant Memory
+This sample demonstrates the migration of the following OpenACC pragmas: 
+- #pragma acc kernels \
+          copyin()    \
+          copyout()   \
+          create()    \
+          if()
+- #pragma acc loop independent, gang
 
->  **Note**: Refer to [Workflow for a CUDA* to SYCL* Migration](https://www.intel.com/content/www/us/en/developer/tools/oneapi/training/cuda-sycl-migration-workflow.html#gs.s2njvh) for general information about the migration workflow.
 
-### CUDA source code evaluation
-
-This is a program in CUDA that tests the performance of a quasi-random number generator. It generates a sequence of random numbers and compares it to a reference sequence generated by the CPU. The program prints the L1 norm of the difference between the two sequences, which is a measure of the accuracy of the GPU-generated sequence.
-The program uses the CUDA runtime and some helper functions from the CUDA samples, as well as the Moro inverse cumulative normal distribution function. It also includes some CPU functions to initialize the quasi-random generator and to generate a quasi-random sequence using a 63-bit integer index.
-
-This sample is migrated from NVIDIA CUDA sample. See the [quasirandomGenerator](https://github.com/NVIDIA/cuda-samples/tree/master/Samples/5_Domain_Specific/quasirandomGenerator) sample in the NVIDIA/cuda-samples GitHub.
+>  **Note**: Refer to [Portability across Heterogeneous Architectures](https://www.intel.com/content/www/us/en/developer/articles/technical/openmp-accelerator-offload.html#gs.n33nuz) for general information about the migration of OpenACC to OpenMP.
 
 ## Set Environment Variables
 
 When working with the command-line interface (CLI), you should configure the oneAPI toolkits using environment variables. Set up your CLI environment by sourcing the `setvars` script every time you open a new terminal window. This practice ensures that the compiler, libraries, and tools are ready for development.
 
-## Migrate the `quasirandomGenerator` Sample
+## Migrate the `bilateralFilter` Sample
 
-### Migrate the Code using SYCLomatic 
+### Migrate the Code using intel-application-migration-tool-for-openacc-to-openmp
 
-For this sample, the SYCLomatic Tool automatically migrates 100% of the CUDA code to SYCL. Follow these steps to generate the SYCL code using the compatibility tool:
+For this sample, the tool takes application sources (either C/C++ or Fortran languages) with OpenACC constructs and generates a semantically-equivalent source using OpenMP. Follow these steps to migrate the code
 
-  1. Clone the required GitHub repository to your local environment.
+  1. Tool installation
      ```
-     git clone https://github.com/NVIDIA/cuda-samples.git
+     https://github.com/intel/intel-application-migration-tool-for-openacc-to-openmp.git
      ```
-  2. Change to the convolutionSeparable sample directory.
+    The binary of the translator can be found inside intel-application-migration-tool-for-openacc-to-openmp/src location
+    
+  2. Change to the bilateralfilter sample directory.
      ```
-     cd cuda-samples/Samples/5_Domain_Specific/quasirandomGenerator/
+     cd src/bilateralFilter/
      ```
-  3. Generate a compilation database with intercept-build
+  4. Now invoke the translator to migrate the openACC pragmas to OpenMP as shown below
      ```
-     intercept-build make
-     ```
-   The above step creates a JSON file named compile_commands.json with all the compiler invocations and stores the names of the input files and the compiler options.
-   
-  4. Pass the JSON file as input to the Intel® SYCLomatic Compatibility Tool. The result is written to a folder named dpct_output. The --in-root specifies path to the root of the source tree to be migrated. The --gen-helper-function option will make a copy of dpct header files/functions used in the migrated code into the dpct_output folder as include folder.
-     ```
-     c2s -p compile_commands.json --in-root ../../.. --gen-helper-function
+     intel-application-migration-tool-for-openacc-to-openmp/src/intel-application-migration-tool-for-openacc-to-openmp bilateralFilter.c
      ```
 ### Optimizations
 
-SYCL has two kinds of queues that a programmer can create and use to submit kernels for execution:
 
-  #### In-order queues: 
-  Where kernels are executed in the order they were submitted to the queue.
-   
-  #### Out-of-order queues: 
-  Where kernels can be executed in an arbitrary order (subject to the dependency constraints among them).
-
-The choice to create an in-order or out-of-order queue is made at the queue construction time through the property sycl::property::queue::in_order(). By default, when no property is specified, the queue is out-of-order.
-
-The optimized code creates the queue as follows:
-        
-        sycl::queue q_ct1 = sycl::queue(sycl::default_selector_v);
-
-Since we changed the queue from in-order to out-of-order execution, it resulted in better performance.
-
-To summarise, in-order queues guarantee the order of execution of commands, while out-of-order queues allow for greater flexibility and potential performance gains but require careful synchronization management. The choice of which queue to use depends on the requirements and constraints of the application being developed.
-
-## Build the `QuasirandomGenerator` Sample for CPU and GPU
+## Build the `bilateralFilter` Sample for CPU and GPU
 
 > **Note**: If you have not already done so, set up your CLI
 > environment by sourcing  the `setvars` script in the root of your oneAPI installation.

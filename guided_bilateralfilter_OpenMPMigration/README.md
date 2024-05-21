@@ -27,7 +27,7 @@ This sample contains two versions in the following folders:
 | Optimized for              | Description
 |:---                        |:---
 | OS                         | Ubuntu* 22.04
-| Hardware                   | Intel® Gen9 <br> Intel® Gen11 <br> Intel® Xeon CPU <br> Intel® Data Center GPU Max
+| Hardware                   | Intel® Gen9 <br> Intel® Gen11 <br> Intel® Data Center GPU Max
 | Software                   | intel-application-migration-tool-for-openacc-to-openmp
 
 For more information on how to install the above Tool, visit [intel-application-migration-tool-for-openacc-to-openmp](https://github.com/intel/intel-application-migration-tool-for-openacc-to-openmp)
@@ -70,10 +70,18 @@ The binary of the translator can be found inside intel-application-migration-too
      ```
      intel-application-migration-tool-for-openacc-to-openmp/src/intel-application-migration-tool-for-openacc-to-openmp bilateralFilter.c
      ```
-### Optimizations
+### Optimization
 
+The tool does not aim at guaranteeing the best achievable performance but at generating a semantically equivalent translation. To optimize the code, one can use `teams` directive as it plays a crucial role, especially in the context of offloading computations to devices such as GPUs. The `teams` directive in OpenMP is used to create a league of thread teams, each of which can execute concurrently that leads to good performance.
+Introduce teams in the pragma as shown below in the translated code (line 126)
+   ```
+   #pragma omp target teams map(to:h_Src[0:imageW*imageH],h_Gaussian[0:KERNEL_LENGTH])\
+            map(from:h_Dst[0:imageW*imageH]) map(alloc:h_BufferX[0:imageW*imageH],\
+            h_BufferY[0:imageW*imageH],h_BufferZ[0:imageW*imageH],\
+            h_BufferW[0:imageW*imageH]) if(accelerate)
+   ```
 
-## Build the `bilateralFilter` Sample for CPU and GPU
+## Build the `bilateralFilter` Sample for GPU
 
 > **Note**: If you have not already done so, set up your CLI
 > environment by sourcing  the `setvars` script in the root of your oneAPI installation.

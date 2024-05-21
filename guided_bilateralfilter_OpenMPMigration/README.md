@@ -59,7 +59,8 @@ For this sample, the tool takes application sources (either C/C++ or Fortran lan
      ```
      https://github.com/intel/intel-application-migration-tool-for-openacc-to-openmp.git
      ```
-    The binary of the translator can be found inside intel-application-migration-tool-for-openacc-to-openmp/src location
+
+The binary of the translator can be found inside intel-application-migration-tool-for-openacc-to-openmp/src location
     
   2. Change to the bilateralfilter sample directory.
      ```
@@ -70,7 +71,7 @@ For this sample, the tool takes application sources (either C/C++ or Fortran lan
      intel-application-migration-tool-for-openacc-to-openmp/src/intel-application-migration-tool-for-openacc-to-openmp bilateralFilter.c
      ```
 ### Optimizations
-
+ca
 
 ## Build the `bilateralFilter` Sample for CPU and GPU
 
@@ -89,30 +90,15 @@ For this sample, the tool takes application sources (either C/C++ or Fortran lan
 1. Change to the sample directory.
 2. Build the program.
    ```
-   $ mkdir build
-   $ cd build
-   $ cmake .. or ( cmake -D INTEL_MAX_GPU=1 .. ) or ( cmake -D NVIDIA_GPU=1 .. )
    $ make
    ```
->**Note:** 
-> - By default, no flags are enabled during the build which supports Intel® UHD Graphics, Intel® Gen9, Gen11, Xeon CPU.
-> - Enable INTEL_MAX_GPU flag during build which supports Intel® Data Center GPU Max 1550 or 1100 to get optimized performance.
-> - Enable NVIDIA_GPU flag during build which supports NVIDIA GPUs.([oneAPI for NVIDIA GPUs plugin from Codeplay](https://developer.codeplay.com/products/oneapi/nvidia/)  is required to build for NVIDIA GPUs)
    
-By default, this command sequence will build the `02_sycl_migrated_optimized` version of the program.
+By default, this command sequence will build the `openMP_migrated_output ` version of the program.
 
 3. Run the program.
-   
-   Run `02_sycl_migrated_optimized` on GPU.
    ```
    make run
    ```  
-   Run `02_sycl_migrated_optimized` on CPU.
-   ```
-   export ONEAPI_DEVICE_SELECTOR=opencl:cpu
-   make run
-   unset ONEAPI_DEVICE_SELECTOR 
-   ```
    
 #### Troubleshooting
 

@@ -20,14 +20,14 @@ This sample contains two versions in the following folders:
 | Folder Name                   | Description
 |:---                           |:---
 | `src`              | Contains the original OpenACC source code 
-| `OpenMP_migrated`            | Contains the OpenMP migrated code.
+| `openMP_migrated_output`            | Contains the OpenMP migrated code.
 
 ## Prerequisites
 
 | Optimized for              | Description
 |:---                        |:---
 | OS                         | Ubuntu* 22.04
-| Hardware                   | Intel® Data Center GPU Max
+| Hardware                   | Intel® Gen9 <br> Intel® Gen11 <br> Intel® Xeon CPU <br> Intel® Data Center GPU Max
 | Software                   | intel-application-migration-tool-for-openacc-to-openmp
 
 For more information on how to install the above Tool, visit [intel-application-migration-tool-for-openacc-to-openmp](https://github.com/intel/intel-application-migration-tool-for-openacc-to-openmp)
@@ -66,12 +66,12 @@ The binary of the translator can be found inside intel-application-migration-too
      ```
      cd src/bilateralFilter/
      ```
-  4. Now invoke the translator to migrate the openACC pragmas to OpenMP as shown below
+  3. Now invoke the translator to migrate the openACC pragmas to OpenMP as shown below
      ```
      intel-application-migration-tool-for-openacc-to-openmp/src/intel-application-migration-tool-for-openacc-to-openmp bilateralFilter.c
      ```
 ### Optimizations
-ca
+
 
 ## Build the `bilateralFilter` Sample for CPU and GPU
 
@@ -97,7 +97,7 @@ By default, this command sequence will build the `openMP_migrated_output ` versi
 
 3. Run the program.
    ```
-   make run
+   $ make run
    ```  
    
 #### Troubleshooting

@@ -18,8 +18,7 @@ When the euclidean delta increases, most of the fine texture will be filtered aw
 This sample contains two versions in the following folders:
 
 | Folder Name                   | Description
-|:---                           |:---
-| `src`              | Contains the original OpenACC source code 
+|:---                           |:--- 
 | `openMP_migrated_output`            | Contains the OpenMP migrated code.
 
 ## Prerequisites
@@ -62,14 +61,16 @@ For this sample, the tool takes application sources (either C/C++ or Fortran lan
 
 The binary of the translator can be found inside intel-application-migration-tool-for-openacc-to-openmp/src location
     
-  2. Change to the bilateralfilter sample directory.
+  2. The openacc sample is taken from NVIDIA_HPC_SDK samples and can be found at the installation location as shown below
      ```
-     cd src/bilateralFilter/
+     cd /opt/hpc_software/sdk/nvidia/hpc_sdk/Linux_x86_64/24.3/examples/OpenACC/SDK/src/bilateralFilter
      ```
   3. Now invoke the translator to migrate the openACC pragmas to OpenMP as shown below
      ```
      intel-application-migration-tool-for-openacc-to-openmp/src/intel-application-migration-tool-for-openacc-to-openmp bilateralFilter.c
      ```
+For each given input-file, the tool will generate a translation file named <input-file>.translated and will also dump a report with translation details into a file named <input-file>.report.
+
 ### Optimization
 
 The tool does not aim at guaranteeing the best achievable performance but at generating a semantically equivalent translation. To optimize the code, one can use `teams` directive as it plays a crucial role, especially in the context of offloading computations to devices such as GPUs. The `teams` directive in OpenMP is used to create a league of thread teams, each of which can execute concurrently that leads to good performance.

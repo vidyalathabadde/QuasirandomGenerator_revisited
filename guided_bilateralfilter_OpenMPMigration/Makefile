@@ -5,7 +5,7 @@ CC = icx
 CFLAGS = -fiopenmp -fopenmp-targets=spir64 
 
 # Define the include directory
-INCLUDES = -I ./include/
+INCLUDES = -I ../../include/
 
 # Define the source files
 SRCS = ./openMP_migrated_output/bilateralFilter_translated.c

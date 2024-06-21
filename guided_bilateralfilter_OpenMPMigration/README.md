@@ -34,13 +34,13 @@ For more information on how to install the above Tool, visit [intel-application-
 ## Key Implementation Details
 
 This sample demonstrates the migration of the following OpenACC pragmas: 
-- #pragma acc kernels \
-          copyin()    \
-          copyout()   \
-          create()    \
-          if()
+- #pragma acc kernels copyin() copyout() create() if()
+  The kernels construct identifies a region of code that may contain parallelism that has been as been translated into:
+  - #pragma omp target map(to:) map(from:) map(alloc:) if()
 - #pragma acc loop independent, gang
-
+  The loop directive is intended to give the compiler additional information about the next loop in the code. This has been translated into:
+  - #pragma omp loop order(concurrent)
+  
 
 >  **Note**: Refer to [Portability across Heterogeneous Architectures](https://www.intel.com/content/www/us/en/developer/articles/technical/openmp-accelerator-offload.html#gs.n33nuz) for general information about the migration of OpenACC to OpenMP.
 

@@ -21,19 +21,19 @@ all: $(TARGET)
 
 # Rule to build the target executable
 $(TARGET): $(OBJS)
-        $(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
 
 # Rule to compile the source files into object files
 %.o: %.c
-        $(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Rule to run the target executable
 run: $(TARGET)
-        ./$(TARGET)
+	./$(TARGET)
 
 # Clean rule to remove the generated files
 clean:
-        rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJS) $(TARGET)
 
 # Phony targets
 .PHONY: all clean

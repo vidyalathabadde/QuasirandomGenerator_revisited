@@ -5,7 +5,7 @@ CC = icx
 CFLAGS = -fiopenmp -fopenmp-targets=spir64
 
 # Define the include directory
-INCLUDES = -I ../../include/
+#INCLUDES = -I ../../include/
 
 # Define the source files
 SRCS = bilateralFilter_translated.c
@@ -25,7 +25,7 @@ $(TARGET): $(OBJS)
 
 # Rule to compile the source files into object files
 %.o: %.c
-        $(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+        $(CC) $(CFLAGS) -c $< -o $@
 
 # Rule to run the target executable
 run: $(TARGET)

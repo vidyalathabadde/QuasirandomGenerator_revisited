@@ -2,13 +2,13 @@
 CC = icx
 
 # Define the compiler flags
-CFLAGS = -fiopenmp -fopenmp-targets=spir64 
+CFLAGS = -fiopenmp -fopenmp-targets=spir64
 
 # Define the include directory
 INCLUDES = -I ../../include/
 
 # Define the source files
-SRCS = ./openMP_migrated_output/bilateralFilter_translated.c
+SRCS = bilateralFilter_translated.c
 
 # Define the object files
 OBJS = $(SRCS:.c=.o)
@@ -21,11 +21,11 @@ all: $(TARGET)
 
 # Rule to build the target executable
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+        $(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
 
 # Rule to compile the source files into object files
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+        $(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # Rule to run the target executable
 run: $(TARGET)
@@ -33,8 +33,7 @@ run: $(TARGET)
 
 # Clean rule to remove the generated files
 clean:
-	rm -f $(OBJS) $(TARGET)
+        rm -f $(OBJS) $(TARGET)
 
 # Phony targets
 .PHONY: all clean
-

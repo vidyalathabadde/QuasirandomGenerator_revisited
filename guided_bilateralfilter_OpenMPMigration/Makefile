@@ -8,7 +8,7 @@ CFLAGS = -fiopenmp -fopenmp-targets=spir64
 #INCLUDES = -I ../../include/
 
 # Define the source files
-SRCS = bilateralFilter_translated.c
+SRCS = ./openMP_migrated_output/bilateralFilter_translated.c
 
 # Define the object files
 OBJS = $(SRCS:.c=.o)

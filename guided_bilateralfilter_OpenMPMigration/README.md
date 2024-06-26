@@ -56,7 +56,7 @@ For this sample, the tool takes application sources (either C/C++ or Fortran lan
 
   1. Tool installation
      ```
-     https://github.com/intel/intel-application-migration-tool-for-openacc-to-openmp.git
+     git clone https://github.com/intel/intel-application-migration-tool-for-openacc-to-openmp.git
      ```
 
 The binary of the translator can be found inside intel-application-migration-tool-for-openacc-to-openmp/src location

@@ -5,7 +5,7 @@
   "description": "This sample uses OpenMP directives to perform a simple bilateral filter on an image and measures performance",
   "toolchain": [ "icx" ],
   "dependencies": [ "compiler|icx","openmp" ],
-  "languages": [ { "cpp": { "properties": { "projectOptions": [ { "projectType": "makefile" } ] } } } ],
+  "languages": [ { "c": { "properties": { "projectOptions": [ { "projectType": "makefile" } ] } } } ],
   "targetDevice": [ "GPU" ],
   "gpuRequired": ["pvc"],
   "os": [ "linux" ],
